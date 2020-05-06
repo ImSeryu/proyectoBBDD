@@ -80,4 +80,32 @@ public class ClientesDAO {
         return resultado;
 
     }
+    
+    
+    public Boolean delete(Integer id) {
+        Boolean resultado = false;
+        Boolean salida = true;
+        PreparedStatement stmt = null;
+
+        try {
+            String sql = "DELETE FROM clientes WHERE id = ?";
+            stmt = conexion.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            resultado = stmt.execute();
+            salida= true;
+            
+            stmt.close();
+
+            System.out.println();
+
+        } catch (SQLException e) {
+            salida=false;
+            System.err.println("Error en el Delete: " + e.getMessage() + " " + stmt.toString());
+        }
+
+        return salida;
+
+    }
+    
 }
