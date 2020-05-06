@@ -104,7 +104,8 @@ public class ClientesDAO {
             System.err.println("Error en el Delete: " + e.getMessage() + " " + stmt.toString());
         }
 
-        return salida;
+        return salida; 
+        
 
     }
     
