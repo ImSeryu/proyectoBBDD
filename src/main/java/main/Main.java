@@ -28,6 +28,9 @@ public class Main {
         } else {
             System.err.println("El empleado que intenta introducir no es válido.\n");
         }
+        
+        
+        System.out.println("prueba");
     }
     
 }
