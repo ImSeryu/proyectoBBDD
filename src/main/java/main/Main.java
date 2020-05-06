@@ -35,7 +35,7 @@ public class Main {
         if (clientes.delete(91)){
             System.out.println("Eliminado correctamente");
         }else{
-            System.out.println("Error");
+            System.out.println("Error ");
         }
     }
     
