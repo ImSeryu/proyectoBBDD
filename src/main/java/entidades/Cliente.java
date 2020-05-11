@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package entidades;
+
 /**
  *
  * @author seryu
@@ -139,7 +140,34 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Clientes{" + "id=" + id + ", codigo=" + codigo + ", empresa=" + empresa + ", contacto=" + contacto + ", cargoContacto=" + cargoContacto + ", direccion=" + direccion + ", ciudad=" + ciudad + ", region=" + region + ", cp=" + cp + ", pais=" + pais + ", telefono=" + telefono + ", fax=" + fax + '}';
+        String codigo1 = codigo;
+        String empresa1 = empresa;
+        String contacto1 = contacto;
+        String cargoContacto1 = cargoContacto;
+        String direccion1 = direccion;
+        String ciudad1 = ciudad;
+        String region1 = region;
+        String cp1 = cp;
+        String pais1 = pais;
+        String telefono1 = telefono;
+        String fax1 = fax;
+        
+        codigo1 = String.format("%" + 5 + "s", codigo1);
+        empresa1 = String.format("%" + 18 + "s", empresa1);
+        contacto1 = String.format("%" + 18 + "s", contacto1);
+        cargoContacto1 = String.format("%" + 20 + "s", cargoContacto1);
+        direccion1 = String.format("%" + 10 + "s", direccion1);
+        ciudad1 = String.format("%" + 8 + "s", ciudad1);
+        region1 = String.format("%" + 6 + "s", region1);
+        cp1 = String.format("%" + 10 + "s", cp1);
+        pais1 = String.format("%" + 10 + "s", pais1);
+        telefono1 = String.format("%" + 10 + "s", telefono1);
+        fax1 = String.format("%" + 10 + "s", fax1);
+        
+        
+        String cadena = "|  %3d  |  %.5s  |  %.18s  |  %.18s  |  %.20s  |  %.10s  |  %.8s  |  %.6s  |  %.10s  |  %.10s  |  %.10s  |  %.10s  |";
+        String format = String.format(cadena, id, codigo1, empresa1, contacto1, cargoContacto1, direccion1, ciudad1, region1, cp1, pais1, telefono1, fax1);
+        return format;
     }
     
     
