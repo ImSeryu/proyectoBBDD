@@ -299,4 +299,29 @@ public class ClientesDAO {
         }
         return clientes;
     }
+    
+    public int maximoId(){
+        Cliente cliente = null;
+        PreparedStatement stmt = null;
+
+        try {
+            String query = "SELECT * FROM clientes WHERE id = (SELECT Max(id) FROM `clientes`)";
+            stmt = conexion.prepareStatement(query);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                cliente = new Cliente();
+                cliente.setId(rs.getInt("id")); 
+            }
+
+            stmt.close();
+
+        } catch (SQLException e) {
+
+            System.err.println("Error en el Select: " + e.getMessage() + "\nQuery: " + stmt.toString());
+        }
+
+        return cliente.getId();
+    }
 }
