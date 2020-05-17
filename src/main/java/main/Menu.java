@@ -18,6 +18,10 @@ import java.io.InputStreamReader;
 public class Menu {
     
     static ClientesDAO clientes = new ClientesDAO();
+    static final String ANSI_RED = "\u001B[31m";
+    static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
     
     public void menu() throws IOException{
         Scanner sc = new Scanner(System.in, "ISO-8859-1");
@@ -52,11 +56,11 @@ public class Menu {
                         visualizarTabla(sc);
                         break;
                     default:
-                        System.out.println("\nIntroduzca alguna de las opciones válidas.");
+                        System.out.println("\n"+ANSI_RED + "Introduce una opcion valida" + ANSI_RESET+"\n");
                 }
                 System.out.println();
             } catch (NumberFormatException nfe) {
-                System.err.println("\nError: debes introducir un numero\n");
+                System.out.println("\n"+ANSI_RED + "Error: debes introducir un numero" + ANSI_RESET+"\n");
             }
         }while(salida);
     }
@@ -89,12 +93,12 @@ public class Menu {
             cliente.setFax(br.readLine());
 
             if(clientes.insert(cliente)){
-                System.out.println("Cliente añadido correctamente");
+                System.out.println("\n"+ANSI_GREEN + "Cliente creado correctamente" + ANSI_RESET+"\n");
             }else{
-                System.out.println("Error al añadir cliente");
+                System.out.println("\n"+ANSI_RED + "Error al añadir cliente" + ANSI_RESET+"\n");
             }
         }else{
-            System.out.println("Operacion cancelada");
+            System.out.println("\n"+ANSI_YELLOW + "Operacion cancelada" + ANSI_RESET+"\n");
         }
         
     }
@@ -109,23 +113,23 @@ public class Menu {
                 id = Integer.parseInt(sc.nextLine());            
                 salida = false;
             }catch(NumberFormatException exc){
-                System.out.println("Debes de introducir un numero");
+                System.out.println(ANSI_RED + "Debes introducir un numero" + ANSI_RESET);
             }
         }while(salida);
         
         if(id!=0){
-            if(id<clientes.maximoId()){
+            if(id<=clientes.maximoId()){
                 if(clientes.delete(id)){
-                    System.out.println("Cliente borrado correctamente");
+                    System.out.println("\n"+ANSI_GREEN + "Cliente borrado correctamente" + ANSI_RESET+"\n");
                 }else{
-                    System.out.println("Error al borrar cliente");
+                    System.out.println("\n"+ANSI_RED + "Error al borrar el cliente" + ANSI_RESET+"\n");
                 }
             }else{
-                System.out.println("No existe cliente con ese id");
+                System.out.println("\n"+ANSI_RED + "No existe cliente co nese id" + ANSI_RESET+"\n");
             }
             
         }else{
-            System.out.println("Operacion cancelada");
+            System.out.println("\n"+ANSI_YELLOW + "Operacion cancelada" + ANSI_RESET+"\n");
         }
         
     }
@@ -141,18 +145,18 @@ public class Menu {
                 id = Integer.parseInt(sc.nextLine());
                 salida = false;
             }catch(NumberFormatException exc){
-                System.out.println("Debes de introducir un numero");
+                System.out.println("\n"+ANSI_RED + "Debes introducir un numero" + ANSI_RESET+"\n");
             }
         }while(salida);
         
         if(id!=0){
             if(clientes.update(id)){
-                System.out.println("Cliente modificado correctamente");
+                System.out.println("\n"+ANSI_GREEN + "Cliente modificado correctamente" + ANSI_RESET+"\n");
             }else{
-                System.out.println("Error al modificar cliente");
+                System.out.println("\n"+ANSI_RED + "Error al modificar el cliente" + ANSI_RESET+"\n");
             }
         }else{
-            System.out.println("Operacion cancelada");
+            System.out.println("\n"+ANSI_YELLOW + "Operacion cancelada" + ANSI_RESET+"\n");
         }
         
         
@@ -182,7 +186,7 @@ public class Menu {
                         break;
                     case 1:
                         if((comienzo+10)>clientes.maximoId()){
-                            System.out.println("\nNo hay mas clientes para mostrar\n");
+                            System.out.println("\n"+ANSI_RED + "No hay mas clientes para mostrar" + ANSI_RESET+"\n");
                         }else{
                             comienzo += 10;
                             fin += 10;
@@ -193,16 +197,16 @@ public class Menu {
                             comienzo -= 10;
                             fin -= 10;
                         }else{
-                            System.out.println("\nEstas en el visualizando el primer registro, no se puede ir hacia atras\n");
+                            System.out.println("\n"+ANSI_RED + "Estas visualizando el primer registro, no puedes ir hacia atras" + ANSI_RESET+"\n");
                         }    
                         break;
                     default:
-                        System.out.println("Introduce una opcion valida");
+                        System.out.println("\n"+ANSI_RED + "Introduce una opcion valida" + ANSI_RESET+"\n");
                         break;    
                 }
         
                 }catch(NumberFormatException nfe){
-                    System.out.println("\nDebes introducir un numero\n");
+                    System.out.println("\n"+ANSI_RED + "Error: debes introducir un numero" + ANSI_RESET+"\n");
                 }
         }while(salida);    
     }
